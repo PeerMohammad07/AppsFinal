@@ -10,11 +10,12 @@ import {
   Text,
 } from "@shopify/polaris";
 import { fetchProducts } from "@/api/fetchApi";
+import { IProduct } from "@/interfaces/IProduct";
 
 
 const ProductTable = () => {
-  const [products, setProducts] = useState<any[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct|null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetch = async () => {
@@ -28,7 +29,7 @@ const ProductTable = () => {
     fetch();
   }, []);
 
-  const handleRowClick = (product: any) => {
+  const handleRowClick = (product: IProduct) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
