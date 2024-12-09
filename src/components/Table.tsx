@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import {
   IndexTable,
@@ -12,16 +10,15 @@ import {
 import { fetchProducts } from "@/api/fetchApi";
 import { IProduct } from "@/interfaces/IProduct";
 
-
 const ProductTable = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<IProduct|null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const fetch = async () => {
     const response = await fetchProducts();
-    if(response){
-      setProducts(response.data)
+    if (response) {
+      setProducts(response.data);
     }
   };
 
@@ -35,7 +32,7 @@ const ProductTable = () => {
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false);  
+    setIsModalOpen(false);
     setSelectedProduct(null);
   };
 
@@ -53,7 +50,10 @@ const ProductTable = () => {
     >
       <IndexTable.Cell>
         <div className="flex items-center gap-4">
-          <Thumbnail source={product.image || "https://via.placeholder.com/50"} alt={product.title} />
+          <Thumbnail
+            source={product.image || "https://via.placeholder.com/50"}
+            alt={product.title}
+          />
           <Text as="span" variant="bodyMd" fontWeight="semibold">
             {product.title}
           </Text>
