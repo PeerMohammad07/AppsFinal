@@ -19,7 +19,9 @@ const ProductTable = () => {
 
   const fetch = async () => {
     const response = await fetchProducts();
-    setProducts(response.data);
+    if(response){
+      setProducts(response.data)
+    }
   };
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const ProductTable = () => {
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
+    setIsModalOpen(false);  
     setSelectedProduct(null);
   };
 
@@ -41,14 +43,12 @@ const ProductTable = () => {
     plural: "products",
   };
 
-  // Table Rows
   const rowMarkup = products.map((product, index) => (
     <IndexTable.Row
       id={product.id.toString()}
       key={product.id}
       position={index}
       onClick={() => handleRowClick(product)}
-      style={{ cursor: "pointer" }} 
     >
       <IndexTable.Cell>
         <div className="flex items-center gap-4">
